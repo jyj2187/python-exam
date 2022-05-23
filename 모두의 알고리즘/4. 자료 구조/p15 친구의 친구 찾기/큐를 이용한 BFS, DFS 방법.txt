@@ -1,0 +1,23 @@
+def bfs(graph, start_node):
+    visit = set()  # 아래 댓글에서도 지적했듯이 dictionary나 set으로 구현하는 것이 더 효율적입니다.
+    q = Queue()
+
+    q.put(start_node)
+
+    while q.qsize() > 0:
+        node = q.get()
+        if node not in visit:
+            visit.add(node)
+            for nextNode in graph[node]:
+                q.put(nextNode)
+    return visit
+
+1. 탐색 목록을 set()로 설정
+2. 큐(set 또는 파이썬의 모듈)에 시작 지점을 삽입
+3. 큐를 전부 탐색 할 때까지
+4. 큐에서 숫자 하나를 가져와서 탐색 목록에 있는지 확인
+    4-1. get() 메소드는 요소를 하나 빼오면서 삭제. (FIFO)
+5. 없으면 탐색 목록에 해당 숫자를 추가
+6. 해당 숫자와 연결된 숫자들을 큐에 삽입
+
+반복.
